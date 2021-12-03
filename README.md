@@ -39,7 +39,7 @@ Import library to needed swift file.
     import WebKitUserAgent
 ```
 
-Library provides 3 variants of usage.
+Library provides 2 variants of usage.
 1. With prepared `WKWebView`.
 
 **example:**
@@ -56,27 +56,7 @@ Library provides 3 variants of usage.
     }
 ```
 
-2. With prepared `WKWebViewConfiguration`(`WKWebView` inializes in library).
-
-**example:**
-```swift
-    let preferences = WKPreferences()
-    preferences.javaScriptEnabled = true
-    
-    let webViewConfiguration = WKWebViewConfiguration()
-    webViewConfiguration.preferences = preferences
-    
-    WKUserAgent.getUserAgent(webViewConfiguration: webViewConfiguration) { result in 
-        switch result {
-        case .success(let userAgent):
-            // Get the User Agent
-        case .failure(let error):
-            // Handle error
-        }
-    }
-```
-
-3. With `applicationName` String value (`WKWebView` initializes in library). 
+2. With `applicationName` String value (`WKWebView` initializes in library). 
 Application name is additional part for User Agent, which will be added at the end of original WebView's User Agent.
 
 **example:**

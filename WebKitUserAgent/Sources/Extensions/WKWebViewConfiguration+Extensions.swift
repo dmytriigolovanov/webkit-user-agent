@@ -19,25 +19,19 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 //
-//  WKUserAgent.swift
+//  WKWebViewConfiguration+Extensions.swift
 //  Created by Dmytrii Golovanov on 03.12.2021.
 //
 
 import Foundation
 import WebKit
 
-public final class WKUserAgent {
-    /// Getting User Agent through WKWebView.
-    public static func getUserAgent(webView: WKWebView,
-                                    completion: @escaping (Result<String, Error>) -> Void) {
-        let worker = WKUserAgentWorker(webView: webView)
-        worker.getUserAgent(completion: completion)
-    }
-    
-    /// Getting User Agent through WKWebView, initalized with application name for user agent.
-    public static func getUserAgent(applicationName: String,
-                                    completion: @escaping (Result<String, Error>) -> Void) {
-        let worker = WKUserAgentWorker(applicationName: applicationName)
-        worker.getUserAgent(completion: completion)
+extension WKWebViewConfiguration {
+    var isJavaScriptEnabled: Bool {
+        if #available(iOS 14.0, macOS 11.0, *) {
+            return defaultWebpagePreferences.allowsContentJavaScript
+        } else {
+            return preferences.javaScriptEnabled
+        }
     }
 }

@@ -22,6 +22,7 @@
 //  WKUserAgentWorker.swift
 //  Created by Dmytrii Golovanov on 03.12.2021.
 //
+
 import Foundation
 import WebKit
 
@@ -34,21 +35,24 @@ final class WKUserAgentWorker: NSObject {
         self.webView = webView
     }
     
-    convenience init(webViewConfiguration: WKWebViewConfiguration) {
-        let webView = WKWebView(frame: .zero, configuration: webViewConfiguration)
-        self.init(webView: webView)
-    }
-    
     convenience init(applicationName: String) {
         let webViewConfiguration = WKWebViewConfiguration()
         webViewConfiguration.applicationNameForUserAgent = applicationName
-        self.init(webViewConfiguration: webViewConfiguration)
+        
+        let webView = WKWebView(frame: .zero, configuration: webViewConfiguration)
+        self.init(webView: webView)
     }
     
     // MARK: Get User Agent
     
     func getUserAgent(completion: @escaping (Result<String, Error>) -> Void) {
         DispatchQueue.main.async {
+            guard self.webView.configuration.isJavaScriptEnabled else {
+                let error = WKUserAgentError.javaScriptDisabled
+                completion(.failure(error))
+                return
+            }
+            
             self.webView.getUserAgent { result in
                 switch result {
                 case .success(let anyResult):
