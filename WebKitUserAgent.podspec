@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'WebKitUserAgent'
-  s.version          = '0.1.0'
+  s.version          = '1.0.0'
   s.summary          = 'Conveniently getting the User Agent through WKWebView'
 
   s.description      = <<-DESC
