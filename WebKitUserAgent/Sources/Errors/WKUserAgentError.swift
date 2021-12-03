@@ -28,6 +28,7 @@ import Foundation
 public let WKUserAgenErrorDomain = "WKUserAgentError"
 
 enum WKUserAgentError: Error {
+    case javaScriptDisabled
     case javaScriptCompletedWithNil
     case javaScriptCompletedWithNonString(result: Any)
 }
@@ -41,10 +42,12 @@ extension WKUserAgentError: CustomNSError {
     
     var errorCode: Int {
         switch self {
-        case .javaScriptCompletedWithNil:
+        case .javaScriptDisabled:
             return 0
-        case .javaScriptCompletedWithNonString:
+        case .javaScriptCompletedWithNil:
             return 1
+        case .javaScriptCompletedWithNonString:
+            return 2
         }
     }
     
@@ -68,16 +71,20 @@ extension WKUserAgentError: CustomNSError {
 extension WKUserAgentError: LocalizedError {
     var errorDescription: String? {
         switch self {
+        case .javaScriptDisabled:
+            return "Can't complete UserAgent getting, because JavaScript is disabled."
         case .javaScriptCompletedWithNil:
-            return "Geting UserAgent completed with nil result."
+            return "Getting UserAgent completed with nil result."
         case .javaScriptCompletedWithNonString(let result):
             let type = type(of: result)
-            return "Geting UserAgent completed with non-String (\(type)) result."
+            return "Getting UserAgent completed with non-String (\(type)) result."
         }
     }
 
     var failureReason: String? {
         switch self {
+        case .javaScriptDisabled:
+            return "JavaScript is disabled in WKWebView."
         case .javaScriptCompletedWithNil:
             return "Evaluating JavaScript in WKWebView completed with nil result."
         case .javaScriptCompletedWithNonString(let result):
