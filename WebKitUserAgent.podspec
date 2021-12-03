@@ -18,7 +18,7 @@ The library provides the ability to conveniently getting the User Agent through 
 
   s.preserve_paths = [
     "README.md",
-    "WebKitUserAgent/CHANGELOG.md"
+    "CHANGELOG.md"
   ]
 
   s.ios.deployment_target = "9.0"
