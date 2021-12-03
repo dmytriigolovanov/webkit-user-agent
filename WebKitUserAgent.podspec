@@ -4,7 +4,7 @@ Pod::Spec.new do |s|
   s.summary          = 'WebKit UserAgent'
 
   s.description      = <<-DESC
-Get the UserAgent from WKWebView.
+Comfortable getting the UserAgent from WKWebView.
                        DESC
 
   s.homepage         = 'https://github.com/dmytriigolovanov/webkit-user-agent'
