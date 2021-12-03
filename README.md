@@ -1,5 +1,10 @@
 # WebKit User Agent
 
+## Requirements
+
+* **iOS 9.0+**
+* **macOS 10.11+**
+
 ## Installation
 
 See the subsections below for details about the different installation methods.
