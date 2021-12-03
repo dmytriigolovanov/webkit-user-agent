@@ -11,9 +11,7 @@ let package = Package(
             name: "WebKitUserAgent",
             targets: ["WebKitUserAgent"]),
     ],
-    dependencies: [
-        
-    ],
+    dependencies: [],
     targets: [
         .target(
             name: "WebKitUserAgent",
@@ -22,5 +20,6 @@ let package = Package(
             name: "WebKitUserAgentTests",
             dependencies: ["WebKitUserAgent"],
             path: "WebKitUserAgent/Tests")
-    ]
+    ],
+    swiftLanguageVersions: [.v5]
 )
