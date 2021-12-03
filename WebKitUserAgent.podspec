@@ -1,15 +1,15 @@
 Pod::Spec.new do |s|
   s.name             = 'WebKitUserAgent'
   s.version          = '0.1.0'
-  s.summary          = 'WebKit UserAgent'
+  s.summary          = 'Conveniently getting the User Agent through WKWebView'
 
   s.description      = <<-DESC
-Comfortable getting the UserAgent from WKWebView.
+The library provides the ability to conveniently getting the User Agent through WKWebView.
                        DESC
 
   s.homepage         = 'https://github.com/dmytriigolovanov/webkit-user-agent'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
-  s.authors          = 'Dmytrii Golovanov'
+  s.author           = { 'Dmytrii Golovanov' => 'dmyrii.golovanov@google.com' }
 
   s.source           = {
     :git => 'https://github.com/dmytriigolovanov/webkit-user-agent.git',
@@ -17,7 +17,8 @@ Comfortable getting the UserAgent from WKWebView.
   }
 
   s.preserve_paths = [
-    "README.md"
+    "README.md",
+    "WebKitUserAgent/CHANGELOG.md"
   ]
 
   s.ios.deployment_target = "9.0"
