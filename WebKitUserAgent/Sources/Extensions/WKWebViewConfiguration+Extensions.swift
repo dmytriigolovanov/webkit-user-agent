@@ -19,36 +19,19 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 //
-//  WebKitUserAgentTests.swift
+//  WKWebViewConfiguration+Extensions.swift
 //  Created by Dmytrii Golovanov on 03.12.2021.
 //
 
-import XCTest
+import Foundation
 import WebKit
-@testable import WebKitUserAgent
 
-final class WebKitUserAgentTests: XCTestCase {
-    
-    func testGetUserAgentWithWebView() throws {
-        DispatchQueue.main.async {
-            let webView = WKWebView(frame: .zero)
-            WKUserAgent.getUserAgent(webView: webView) { result in
-                if case .failure(let error) = result {
-                    XCTFail("Error: \(error.localizedDescription)")
-                }
-            }
-        }
-    }
-    
-    func testGetUserAgentWithApplicationName() throws {
-        let applicationName = "get_user_agent_with_application_name_test"
-        WKUserAgent.getUserAgent(applicationName: applicationName) { result in
-            switch result {
-            case .success(let userAgent):
-                XCTAssertTrue(userAgent.contains(applicationName), "User Agent doesn't contains provided application name.")
-            case .failure(let error):
-                XCTFail("Error: \(error.localizedDescription)")
-            }
+extension WKWebViewConfiguration {
+    var isJavaScriptEnabled: Bool {
+        if #available(iOS 14.0, macOS 11.0, *) {
+            return defaultWebpagePreferences.allowsContentJavaScript
+        } else {
+            return preferences.javaScriptEnabled
         }
     }
 }

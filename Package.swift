@@ -5,15 +5,13 @@ import PackageDescription
 
 let package = Package(
     name: "WebKitUserAgent",
-    platforms: [.iOS(.v9), .macOS(.v10_10)],
+    platforms: [.iOS(.v9), .macOS(.v10_11)],
     products: [
         .library(
             name: "WebKitUserAgent",
             targets: ["WebKitUserAgent"]),
     ],
-    dependencies: [
-        
-    ],
+    dependencies: [],
     targets: [
         .target(
             name: "WebKitUserAgent",
@@ -22,5 +20,6 @@ let package = Package(
             name: "WebKitUserAgentTests",
             dependencies: ["WebKitUserAgent"],
             path: "WebKitUserAgent/Tests")
-    ]
+    ],
+    swiftLanguageVersions: [.v5]
 )
