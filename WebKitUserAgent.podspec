@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'WebKitUserAgent'
-  s.version          = '1.0.0'
+  s.version          = '1.0.1'
   s.summary          = 'Conveniently getting the User Agent through WKWebView'
 
   s.description      = <<-DESC
@@ -18,7 +18,7 @@ The library provides the ability to conveniently getting the User Agent through 
 
   s.preserve_paths = [
     "README.md",
-    "WebKitUserAgent/CHANGELOG.md"
+    "CHANGELOG.md"
   ]
 
   s.ios.deployment_target = "9.0"
