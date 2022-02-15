@@ -27,17 +27,40 @@ import Foundation
 import WebKit
 
 public final class WKUserAgent {
+    private static var defaultWebView: WKWebView = {
+        let webConfiguration = WKWebViewConfiguration()
+        webConfiguration.applicationNameForUserAgent = ""
+        return WKWebView(
+            frame: .zero,
+            configuration: webConfiguration)
+    }()
+    
     /// Getting User Agent through WKWebView.
-    public static func getUserAgent(webView: WKWebView,
-                                    completion: @escaping (Result<String, Error>) -> Void) {
+    public static func getUserAgent(
+        webView: WKWebView,
+        completion: @escaping (Result<String, Error>) -> Void
+    ) {
         let worker = WKUserAgentWorker(webView: webView)
         worker.getUserAgent(completion: completion)
     }
     
-    /// Getting User Agent through WKWebView, initalized with application name for user agent.
+    /// Getting User Agent through default WKWebView.
+    public static func getUserAgent(completion: @escaping (Result<String, Error>) -> Void) {
+        let webView = self.defaultWebView
+        self.getUserAgent(webView: webView, completion: completion)
+    }
+    
+    /// Getting User Agent through default WKWebView with application name for user agent.
     public static func getUserAgent(applicationName: String,
                                     completion: @escaping (Result<String, Error>) -> Void) {
-        let worker = WKUserAgentWorker(applicationName: applicationName)
-        worker.getUserAgent(completion: completion)
+        getUserAgent { result in
+            switch result {
+            case .success(var userAgent):
+                userAgent += " " + applicationName
+                completion(.success(userAgent))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
     }
 }
