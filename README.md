@@ -61,7 +61,22 @@ Library provides 2 variants of usage.
     }
 ```
 
-2. With `applicationName` String value (`WKWebView` initializes in library). 
+2. With default `WKWebView`.
+
+**example:**
+
+```swift
+    WKUserAgent.getUserAgent { result in 
+        switch result {
+        case .success(let userAgent):
+            // Get the User Agent
+        case .failure(let error):
+            // Handle error
+        }
+    }
+```
+
+3. With `applicationName` String value (Uses default `WKWebView`). 
 Application name is additional part for User Agent, which will be added at the end of original WebView's User Agent.
 
 **example:**
