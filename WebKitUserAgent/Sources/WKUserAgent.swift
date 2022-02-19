@@ -36,7 +36,10 @@ public final class WKUserAgent {
         return WKWebView(frame: .zero)
     }
     
-    private static func prepareWebView(applicationName: String) -> WKWebView {
+    private static func prepareWebView(
+        applicationName: String,
+        rewriteDefaultApplicationName: Bool = false
+    ) -> WKWebView {
         let webConfiguration = WKWebViewConfiguration()
         webConfiguration.applicationNameForUserAgent = applicationName
         return WKWebView(
@@ -81,11 +84,15 @@ public final class WKUserAgent {
     }
     
     /// Fetching `User Agent` through default `WKWebView` with application name.
+    /// Rewriting default `applicationName` value (default for `WKWebViewConfiguration`) ability provided.
     public static func fetch(
         withApplicationName applicationName: String,
+        rewriteDefaultApplicationName: Bool = false,
         completion: @escaping (Result<String, Error>) -> Void
     ) {
-        let webView = prepareWebView(applicationName: applicationName)
+        let webView = prepareWebView(
+            applicationName: applicationName,
+            rewriteDefaultApplicationName: rewriteDefaultApplicationName)
         fetch(
             fromWebView: webView,
             completion: completion)
