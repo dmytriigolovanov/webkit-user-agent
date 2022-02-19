@@ -40,7 +40,7 @@ public final class WKUserAgent {
         webView: WKWebView,
         completion: @escaping (Result<String, Error>) -> Void
     ) {
-        let worker = WKUserAgentWorker(webView: webView)
+        let worker = WKUserAgentFetcher(webView: webView)
         worker.getUserAgent(completion: completion)
     }
     

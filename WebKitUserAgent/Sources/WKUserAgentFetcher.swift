@@ -19,14 +19,14 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 //
-//  WKUserAgentWorker.swift
+//  WKUserAgentFetcher.swift
 //  Created by Dmytrii Golovanov on 03.12.2021.
 //
 
 import Foundation
 import WebKit
 
-final class WKUserAgentWorker: NSObject {
+final class WKUserAgentFetcher: NSObject {
     private let webView: WKWebView
     
     // MARK: Init
