@@ -37,3 +37,10 @@ extension WKWebView {
         }
     }
 }
+
+public extension WKWebView {
+    /// Fetching `User Agent` through `WKWebView`.
+    func fetchUserAgent(completion: @escaping (Result<String, Error>) -> Void) {
+        WKUserAgent.fetch(fromWebView: self, completion: completion)
+    }
+}
