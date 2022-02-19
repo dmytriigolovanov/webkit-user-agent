@@ -30,23 +30,6 @@ public final class WKUserAgent {
     
     private static var activeFetchers: Set<WKUserAgentFetcher> = []
     
-    // MARK: - Prepare WebView
-    
-    private static func prepareWebView() -> WKWebView {
-        return WKWebView(frame: .zero)
-    }
-    
-    private static func prepareWebView(
-        applicationName: String,
-        rewriteDefaultApplicationName: Bool = false
-    ) -> WKWebView {
-        let webConfiguration = WKWebViewConfiguration()
-        webConfiguration.applicationNameForUserAgent = applicationName
-        return WKWebView(
-            frame: .zero,
-            configuration: webConfiguration)
-    }
-    
     // MARK: Active Fetching
     
     private static func addActiveFetcher(_ fetcher: WKUserAgentFetcher) {
@@ -56,6 +39,33 @@ public final class WKUserAgent {
     @discardableResult
     private static func removeActiveFetcher(_ fetcher: WKUserAgentFetcher) -> WKUserAgentFetcher? {
         return activeFetchers.remove(fetcher)
+    }
+    
+    // MARK: Prepare WebView
+    
+    private static func prepareWebView(
+        configuration: WKWebViewConfiguration = WKWebViewConfiguration(),
+        completion: @escaping (WKWebView) -> Void
+    ) {
+        DispatchQueue.main.async {
+            let webView = WKWebView(
+                frame: .zero,
+                configuration: configuration)
+            completion(webView)
+        }
+    }
+    
+    private static func prepareWebView(
+        applicationName: String,
+        rewriteDefaultApplicationName: Bool = false,
+        completion: @escaping (WKWebView) -> Void
+    ) {
+        let configuration = WKWebViewConfiguration(
+            applicationName: applicationName,
+            rewriteDefaultApplicationName: rewriteDefaultApplicationName)
+        prepareWebView(
+            configuration: configuration,
+            completion: completion)
     }
     
     // MARK: Fetch
@@ -77,10 +87,11 @@ public final class WKUserAgent {
     public static func fetch(
         completion: @escaping (Result<String, Error>) -> Void
     ) {
-        let webView = prepareWebView()
-        self.fetch(
-            fromWebView: webView,
-            completion: completion)
+        prepareWebView { webView in
+            self.fetch(
+                fromWebView: webView,
+                completion: completion)
+        }
     }
     
     /// Fetching `User Agent` through default `WKWebView` with application name.
@@ -90,11 +101,13 @@ public final class WKUserAgent {
         rewriteDefaultApplicationName: Bool = false,
         completion: @escaping (Result<String, Error>) -> Void
     ) {
-        let webView = prepareWebView(
+        prepareWebView(
             applicationName: applicationName,
-            rewriteDefaultApplicationName: rewriteDefaultApplicationName)
-        fetch(
-            fromWebView: webView,
-            completion: completion)
+            rewriteDefaultApplicationName: rewriteDefaultApplicationName
+        ) { webView in
+            self.fetch(
+                fromWebView: webView,
+                completion: completion)
+        }
     }
 }
