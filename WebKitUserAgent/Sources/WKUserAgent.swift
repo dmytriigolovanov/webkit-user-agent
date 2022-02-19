@@ -29,6 +29,9 @@ import WebKit
 public final class WKUserAgent {
     
     private static var activeFetchers: Set<WKUserAgentFetcher> = []
+    private static var isPadFixNeeded: Bool {
+        return WKUserAgentIpadFix.isNeeded
+    }
     
     // MARK: Active Fetching
     
@@ -51,6 +54,16 @@ public final class WKUserAgent {
             let webView = WKWebView(
                 frame: .zero,
                 configuration: configuration)
+            
+            // iPad fix
+            if self.isPadFixNeeded {
+                let fix = WKUserAgentIpadFix(webView: webView) { _ in
+                    completion(webView)
+                }
+                fix.resume()
+                return
+            }
+            
             completion(webView)
         }
     }
