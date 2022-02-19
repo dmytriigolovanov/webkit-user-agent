@@ -27,7 +27,7 @@ import Foundation
 import WebKit
 
 extension WKWebView {
-    func getUserAgent(completion: @escaping (Result<Any?, Error>) -> Void) {
+    func fetchUserAgentThroughJavaScript(completion: @escaping (Result<Any?, Error>) -> Void) {
         evaluateJavaScript("navigator.userAgent") { (result, error) in
             if let error = error {
                 completion(.failure(error))

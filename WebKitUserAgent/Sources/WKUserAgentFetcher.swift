@@ -19,14 +19,14 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 //
-//  WKUserAgentWorker.swift
+//  WKUserAgentFetcher.swift
 //  Created by Dmytrii Golovanov on 03.12.2021.
 //
 
 import Foundation
 import WebKit
 
-final class WKUserAgentWorker: NSObject {
+final class WKUserAgentFetcher: NSObject {
     private let webView: WKWebView
     
     // MARK: Init
@@ -35,17 +35,9 @@ final class WKUserAgentWorker: NSObject {
         self.webView = webView
     }
     
-    convenience init(applicationName: String) {
-        let webViewConfiguration = WKWebViewConfiguration()
-        webViewConfiguration.applicationNameForUserAgent = applicationName
-        
-        let webView = WKWebView(frame: .zero, configuration: webViewConfiguration)
-        self.init(webView: webView)
-    }
+    // MARK: Fetch
     
-    // MARK: Get User Agent
-    
-    func getUserAgent(completion: @escaping (Result<String, Error>) -> Void) {
+    func fetch(completion: @escaping (Result<String, Error>) -> Void) {
         DispatchQueue.main.async {
             guard self.webView.configuration.isJavaScriptEnabled else {
                 let error = WKUserAgentError.javaScriptDisabled
@@ -53,7 +45,7 @@ final class WKUserAgentWorker: NSObject {
                 return
             }
             
-            self.webView.getUserAgent { result in
+            self.webView.fetchUserAgentThroughJavaScript { result in
                 switch result {
                 case .success(let anyResult):
                     guard let anyResult = anyResult else {
