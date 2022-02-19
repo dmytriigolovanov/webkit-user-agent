@@ -29,8 +29,7 @@ public let WKUserAgenErrorDomain = "WKUserAgentError"
 
 enum WKUserAgentError: Error {
     case javaScriptDisabled
-    case javaScriptCompletedWithNil
-    case javaScriptCompletedWithNonString(result: Any)
+    case javaScriptCompletedWithInvalidResult(Any?)
 }
 
 // MARK: - CustomNSError
@@ -44,10 +43,8 @@ extension WKUserAgentError: CustomNSError {
         switch self {
         case .javaScriptDisabled:
             return 0
-        case .javaScriptCompletedWithNil:
+        case .javaScriptCompletedWithInvalidResult:
             return 1
-        case .javaScriptCompletedWithNonString:
-            return 2
         }
     }
     
@@ -55,8 +52,8 @@ extension WKUserAgentError: CustomNSError {
         var userInfo: [String: Any] = [:]
         
         switch self {
-        case .javaScriptCompletedWithNonString(let result):
-            userInfo["result"] = result
+        case .javaScriptCompletedWithInvalidResult(let result):
+            userInfo["result"] = result ?? "nil"
         default:
             break
         }
@@ -73,11 +70,13 @@ extension WKUserAgentError: LocalizedError {
         switch self {
         case .javaScriptDisabled:
             return "Can't complete UserAgent getting, because JavaScript is disabled."
-        case .javaScriptCompletedWithNil:
-            return "Getting UserAgent completed with nil result."
-        case .javaScriptCompletedWithNonString(let result):
-            let type = type(of: result)
-            return "Getting UserAgent completed with non-String (\(type)) result."
+        case .javaScriptCompletedWithInvalidResult(let result):
+            if let result = result {
+                let type = type(of: result)
+                return "Getting UserAgent completed with non-String (\(type)) result."
+            } else {
+                return "Getting UserAgent completed with nil result."
+            }
         }
     }
 
@@ -85,11 +84,13 @@ extension WKUserAgentError: LocalizedError {
         switch self {
         case .javaScriptDisabled:
             return "JavaScript is disabled in WKWebView."
-        case .javaScriptCompletedWithNil:
-            return "Evaluating JavaScript in WKWebView completed with nil result."
-        case .javaScriptCompletedWithNonString(let result):
-            let type = type(of: result)
-            return "Evaluating JavaScript in WKWebView completed with non-String (\(type)) result."
+        case .javaScriptCompletedWithInvalidResult(let result):
+            if let result = result {
+                let type = type(of: result)
+                return "Evaluating JavaScript in WKWebView completed with non-String (\(type)) result."
+            } else {
+                return "Evaluating JavaScript in WKWebView completed with nil result."
+            }
         }
     }
 }
