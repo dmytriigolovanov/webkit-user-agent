@@ -41,7 +41,7 @@ public final class WKUserAgent {
         completion: @escaping (Result<String, Error>) -> Void
     ) {
         let worker = WKUserAgentFetcher(webView: webView)
-        worker.getUserAgent(completion: completion)
+        worker.fetch(completion: completion)
     }
     
     /// Getting User Agent through default WKWebView.

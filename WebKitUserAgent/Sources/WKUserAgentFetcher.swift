@@ -35,17 +35,9 @@ final class WKUserAgentFetcher: NSObject {
         self.webView = webView
     }
     
-    convenience init(applicationName: String) {
-        let webViewConfiguration = WKWebViewConfiguration()
-        webViewConfiguration.applicationNameForUserAgent = applicationName
-        
-        let webView = WKWebView(frame: .zero, configuration: webViewConfiguration)
-        self.init(webView: webView)
-    }
+    // MARK: Fetch
     
-    // MARK: Get User Agent
-    
-    func getUserAgent(completion: @escaping (Result<String, Error>) -> Void) {
+    func fetch(completion: @escaping (Result<String, Error>) -> Void) {
         DispatchQueue.main.async {
             guard self.webView.configuration.isJavaScriptEnabled else {
                 let error = WKUserAgentError.javaScriptDisabled
