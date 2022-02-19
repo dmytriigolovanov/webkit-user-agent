@@ -53,7 +53,7 @@ final class WKUserAgentFetcher: NSObject {
                 return
             }
             
-            self.webView.getUserAgent { result in
+            self.webView.fetchUserAgentThroughJavaScript { result in
                 switch result {
                 case .success(let anyResult):
                     guard let anyResult = anyResult else {
