@@ -84,6 +84,9 @@ public final class WKUserAgent {
     // MARK: Fetch
     
     /// Fetching `User Agent` through `WKWebView`.
+    /// WebView must be stored not in temprorary variable.
+    /// 
+    /// iPad iOS 13+ fix: For correct result any `URL` should be loaded in WebView.
     public static func fetch(
         fromWebView webView: WKWebView,
         completion: @escaping (Result<String, Error>) -> Void
