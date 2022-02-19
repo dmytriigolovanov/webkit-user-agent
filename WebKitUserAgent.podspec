@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'WebKitUserAgent'
-  s.version          = '1.1.0'
+  s.version          = '2.0.0'
   s.summary          = 'Conveniently getting the User Agent through WKWebView'
 
   s.description      = <<-DESC
@@ -23,6 +23,12 @@ The library provides the ability to conveniently getting the User Agent through 
 
   s.ios.deployment_target = "9.0"
   s.osx.deployment_target = '10.11'
+  
+  s.ios.frameworks = [
+      "WebKit",
+      "UIKit"
+  ]
+  s.osx.framework = 'WebKit'
 
   s.swift_version = "5.0"
 

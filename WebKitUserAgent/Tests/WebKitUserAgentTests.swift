@@ -1,5 +1,5 @@
 //
-//  Copyright (c) 2021 Dmytrii Golovanov
+//  Copyright (c) 2022 Dmytrii Golovanov
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -29,22 +29,72 @@ import WebKit
 
 final class WebKitUserAgentTests: XCTestCase {
     
-    func testGetUserAgentWithWebView() throws {
+    func testFetchUserAgentWithWebView() throws {
         DispatchQueue.main.async {
             let webView = WKWebView(frame: .zero)
-            WKUserAgent.getUserAgent(webView: webView) { result in
-                if case .failure(let error) = result {
+            WKUserAgent.fetch(fromWebView: webView) { result in
+                switch result {
+                case .success(let userAgent):
+                    XCTAssertFalse(userAgent.isEmpty, "User Agent is empty.")
+                case .failure(let error):
                     XCTFail("Error: \(error.localizedDescription)")
                 }
             }
         }
     }
     
-    func testGetUserAgentWithApplicationName() throws {
-        let applicationName = "get_user_agent_with_application_name_test"
-        WKUserAgent.getUserAgent(applicationName: applicationName) { result in
+    func testFetchUserAgentWithWebViewPublicExtension() throws {
+        DispatchQueue.main.async {
+            let webView = WKWebView(frame: .zero)
+            webView.fetchUserAgent { result in
+                switch result {
+                case .success(let userAgent):
+                    XCTAssertFalse(userAgent.isEmpty, "User Agent is empty.")
+                case .failure(let error):
+                    XCTFail("Error: \(error.localizedDescription)")
+                }
+            }
+        }
+    }
+    
+    func testFetchUserAgentWithDefaultWebView() throws {
+        DispatchQueue.main.async {
+            WKUserAgent.fetch { result in
+                switch result {
+                case .success(let userAgent):
+                    XCTAssertFalse(userAgent.isEmpty, "User Agent is empty.")
+                case .failure(let error):
+                    XCTFail("Error: \(error.localizedDescription)")
+                }
+            }
+        }
+    }
+    
+    func testFetchUserAgentWithApplicationName() throws {
+        let applicationName = "test_fetch_user_agent_with_application_name"
+        WKUserAgent.fetch(
+            withApplicationName: applicationName,
+            rewriteDefaultApplicationName: true
+        ) { result in
             switch result {
             case .success(let userAgent):
+                XCTAssertFalse(userAgent.isEmpty, "User Agent is empty.")
+                XCTAssertTrue(userAgent.contains(applicationName), "User Agent doesn't contains provided application name.")
+            case .failure(let error):
+                XCTFail("Error: \(error.localizedDescription)")
+            }
+        }
+    }
+    
+    func testFetchUserAgentWithAdditionalApplicationName() throws {
+        let applicationName = "test_fetch_user_agent_with_additional_application_name"
+        WKUserAgent.fetch(
+            withApplicationName: applicationName,
+            rewriteDefaultApplicationName: false
+        ) { result in
+            switch result {
+            case .success(let userAgent):
+                XCTAssertFalse(userAgent.isEmpty, "User Agent is empty.")
                 XCTAssertTrue(userAgent.contains(applicationName), "User Agent doesn't contains provided application name.")
             case .failure(let error):
                 XCTFail("Error: \(error.localizedDescription)")

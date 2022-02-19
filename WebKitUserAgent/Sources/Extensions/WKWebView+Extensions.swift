@@ -1,5 +1,5 @@
 //
-//  Copyright (c) 2021 Dmytrii Golovanov
+//  Copyright (c) 2022 Dmytrii Golovanov
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -27,7 +27,7 @@ import Foundation
 import WebKit
 
 extension WKWebView {
-    func getUserAgent(completion: @escaping (Result<Any?, Error>) -> Void) {
+    func fetchUserAgentThroughJavaScript(completion: @escaping (Result<Any?, Error>) -> Void) {
         evaluateJavaScript("navigator.userAgent") { (result, error) in
             if let error = error {
                 completion(.failure(error))
@@ -35,5 +35,12 @@ extension WKWebView {
             }
             completion(.success(result))
         }
+    }
+}
+
+public extension WKWebView {
+    /// Fetching `User Agent` through `WKWebView`.
+    func fetchUserAgent(completion: @escaping (Result<String, Error>) -> Void) {
+        WKUserAgent.fetch(fromWebView: self, completion: completion)
     }
 }
