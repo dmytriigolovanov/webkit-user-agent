@@ -48,18 +48,11 @@ final class WKUserAgentFetcher: NSObject {
             self.webView.fetchUserAgentThroughJavaScript { result in
                 switch result {
                 case .success(let anyResult):
-                    guard let anyResult = anyResult else {
-                        let error = WKUserAgentError.javaScriptCompletedWithNil
-                        completion(.failure(error))
-                        return
-                    }
-                    
                     guard let userAgent = anyResult as? String else {
-                        let error = WKUserAgentError.javaScriptCompletedWithNonString(result: anyResult)
+                        let error = WKUserAgentError.javaScriptCompletedWithInvalidResult(anyResult)
                         completion(.failure(error))
                         return
                     }
-                    
                     completion(.success(userAgent))
                     
                 case .failure(let error):
