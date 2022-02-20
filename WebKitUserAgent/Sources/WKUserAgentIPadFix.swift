@@ -19,14 +19,14 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 //
-//  WKUserAgentIpadFix.swift
+//  WKUserAgentIPadFix.swift
 //  Created by Dmytrii Golovanov on 18.02.2022.
 //
 
 import Foundation
 import WebKit
 
-final class WKUserAgentIpadFix: NSObject {
+final class WKUserAgentIPadFix: NSObject {
     
     static var isNeeded: Bool {
         #if os(iOS) || canImport(UIKit)
@@ -41,10 +41,10 @@ final class WKUserAgentIpadFix: NSObject {
     }
     
     private let webView: WKWebView
-    private let completion: (Bool) -> Void
+    private let completion: (WKUserAgentIPadFix, Bool) -> Void
     private var isCompleted: Bool = false
     
-    private var iPadFixURL: URL? {
+    private var url: URL? {
         return URL(string: "https://github.com/dmytriigolovanov/webkit-user-agent")
     }
     
@@ -52,7 +52,7 @@ final class WKUserAgentIpadFix: NSObject {
     
     init(
         webView: WKWebView,
-        completion: @escaping (Bool) -> Void
+        completion: @escaping (WKUserAgentIPadFix, Bool) -> Void
     ) {
         self.webView = webView
         self.completion = completion
@@ -66,7 +66,7 @@ final class WKUserAgentIpadFix: NSObject {
         }
         isCompleted = true
         webView.navigationDelegate = nil
-        completion(result)
+        completion(self, result)
     }
     
     // MARK: Resume
@@ -77,7 +77,7 @@ final class WKUserAgentIpadFix: NSObject {
             complete(true)
             return
         }
-        guard let url = iPadFixURL else {
+        guard let url = self.url else {
             complete(false)
             return
         }
@@ -91,7 +91,9 @@ final class WKUserAgentIpadFix: NSObject {
 
 // MARK: - WKNavigationDelegate
 
-extension WKUserAgentIpadFix: WKNavigationDelegate {
+extension WKUserAgentIPadFix: WKNavigationDelegate {
+    // MARK: Success
+    
     func webView(
         _ webView: WKWebView,
         didCommit navigation: WKNavigation!
@@ -100,6 +102,29 @@ extension WKUserAgentIpadFix: WKNavigationDelegate {
             return
         }
         complete(true)
+    }
+    
+    func webView(
+        _ webView: WKWebView,
+        didFinish navigation: WKNavigation!
+    ) {
+        guard webView == self.webView else {
+            return
+        }
+        complete(true)
+    }
+    
+    // MARK: Failure
+    
+    func webView(
+        _ webView: WKWebView,
+        didFailProvisionalNavigation navigation: WKNavigation!,
+        withError error: Error
+    ) {
+        guard webView == self.webView else {
+            return
+        }
+        complete(false)
     }
     
     func webView(

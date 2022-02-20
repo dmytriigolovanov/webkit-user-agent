@@ -30,8 +30,9 @@ public final class WKUserAgent {
     
     private static var activeFetchers: Set<WKUserAgentFetcher> = []
     private static var isPadFixNeeded: Bool {
-        return WKUserAgentIpadFix.isNeeded
+        return WKUserAgentIPadFix.isNeeded
     }
+    private static var activeIPadFixes: Set<WKUserAgentIPadFix> = []
     
     // MARK: Active Fetching
     
@@ -42,6 +43,22 @@ public final class WKUserAgent {
     @discardableResult
     private static func removeActiveFetcher(_ fetcher: WKUserAgentFetcher) -> WKUserAgentFetcher? {
         return activeFetchers.remove(fetcher)
+    }
+    
+    // MARK: iPad Fix
+    
+    @discardableResult
+    private static func doIPadFix(
+        webView: WKWebView,
+        completion: @escaping (Bool) -> Void
+    ) -> WKUserAgentIPadFix {
+        let fix = WKUserAgentIPadFix(webView: webView) { completedFix, result in
+            completion(result)
+            self.activeIPadFixes.remove(completedFix)
+        }
+        self.activeIPadFixes.insert(fix)
+        fix.resume()
+        return fix
     }
     
     // MARK: Prepare WebView
@@ -57,10 +74,9 @@ public final class WKUserAgent {
             
             // iPad fix
             if self.isPadFixNeeded {
-                let fix = WKUserAgentIpadFix(webView: webView) { _ in
+                self.doIPadFix(webView: webView) { _ in
                     completion(webView)
                 }
-                fix.resume()
                 return
             }
             
