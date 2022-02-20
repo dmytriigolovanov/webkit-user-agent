@@ -1,3 +1,7 @@
+# v2.0.1
+
+- [fixed] Fixed WKUserAgentIPadFix weak link
+
 # v2.0.0
 
 - [changed] Reorganised WKUserAgent
