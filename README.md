@@ -2,6 +2,7 @@
 
 ## Requirements
 
+* **Swift 5.3**
 * **iOS 9.0+**
 * **macOS 10.11+**
 
