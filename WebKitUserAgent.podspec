@@ -9,7 +9,7 @@ The library provides the ability to conveniently getting the User Agent through 
 
   s.homepage         = 'https://github.com/dmytriigolovanov/webkit-user-agent'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
-  s.author           = { 'Dmytrii Golovanov' => 'dmyrii.golovanov@google.com' }
+  s.author           = { 'Dmytrii Golovanov' => 'dmyrii.golovanov@gmail.com' }
 
   s.source           = {
     :git => 'https://github.com/dmytriigolovanov/webkit-user-agent.git',
@@ -30,7 +30,7 @@ The library provides the ability to conveniently getting the User Agent through 
   ]
   s.osx.framework = 'WebKit'
 
-  s.swift_version = "5.0"
+  s.swift_version = "5.3"
 
   s.source_files  = "WebKitUserAgent/Sources/**/*"
 end
