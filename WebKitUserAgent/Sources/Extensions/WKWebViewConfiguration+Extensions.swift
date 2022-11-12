@@ -10,28 +10,24 @@ import Foundation
 import WebKit
 
 extension WKWebViewConfiguration {
-    var isJavaScriptEnabled: Bool {
-        if #available(iOS 14.0, macOS 11.0, *) {
-            return defaultWebpagePreferences.allowsContentJavaScript
-        } else {
-            return preferences.javaScriptEnabled
-        }
-    }
-    
-    convenience init(
-        applicationName: String,
-        rewriteDefaultApplicationName: Bool
+    func setApplicationNameForUserAgent(
+        _ applicationName: String,
+        overrideDefault: Bool = false
     ) {
-        self.init()
-        var targetApplicationName: String = ""
-        if rewriteDefaultApplicationName == false,
-           let defaultApplicationName = self.applicationNameForUserAgent {
-            targetApplicationName += defaultApplicationName
+        var components: [String] = []
+
+        if
+            overrideDefault == false,
+            let defaultApplicationName = self.applicationNameForUserAgent,
+            defaultApplicationName.isEmpty == false
+        {
+            components.append(defaultApplicationName)
         }
-        if targetApplicationName.isEmpty == false {
-            targetApplicationName += " "
+        
+        if applicationName.isEmpty == false {
+            components.append(applicationName)
         }
-        targetApplicationName += applicationName
-        self.applicationNameForUserAgent = targetApplicationName
+        
+        self.applicationNameForUserAgent = components.joined(separator: " ")
     }
 }

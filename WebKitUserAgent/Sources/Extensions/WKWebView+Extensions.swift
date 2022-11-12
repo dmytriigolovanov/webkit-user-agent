@@ -10,20 +10,16 @@ import Foundation
 import WebKit
 
 extension WKWebView {
-    func fetchUserAgentThroughJavaScript(completion: @escaping (Result<Any?, Error>) -> Void) {
-        evaluateJavaScript("navigator.userAgent") { (result, error) in
-            if let error = error {
-                completion(.failure(error))
-                return
-            }
-            completion(.success(result))
-        }
-    }
-}
-
-public extension WKWebView {
     /// Fetching `User Agent` through `WKWebView`.
-    func fetchUserAgent(completion: @escaping (Result<String, Error>) -> Void) {
+    public var userAgent: String! {
+        self.value(forKey: "userAgent") as? String
+    }
+    
+    // MARK: <3.0.0 versions support
+    
+    /// Fetching `User Agent` through `WKWebView`.
+    @available(*, deprecated, renamed: "userAgent")
+    public func fetchUserAgent(completion: @escaping (Result<String, Error>) -> Void) {
         WKUserAgent.fetch(fromWebView: self, completion: completion)
     }
 }

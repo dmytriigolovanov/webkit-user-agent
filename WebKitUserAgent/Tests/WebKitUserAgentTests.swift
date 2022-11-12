@@ -11,28 +11,46 @@ import WebKit
 @testable import WebKitUserAgent
 
 final class Tests: XCTestCase {
+    let applicationName: String = "TEST/0.0.0"
     
-    func testFetchUserAgentWithWebView() throws {
-        let expectation = XCTestExpectation(description: "Fetch User Agent")
-        
-        DispatchQueue.main.async {
-            let webView = WKWebView(frame: .zero)
-            WKUserAgent.fetch(fromWebView: webView) { result in
-                switch result {
-                case .success(let userAgent):
-                    XCTAssertFalse(userAgent.isEmpty, "User Agent is empty.")
-                case .failure(let error):
-                    XCTFail("Error: \(error.localizedDescription)")
-                }
-                
-                expectation.fulfill()
-            }
+    func testFromWebView() throws {
+        let webView = WKWebView(frame: .zero)
+        guard let userAgent = webView.userAgent else {
+            return XCTFail("Nil User-Agent.")
         }
-        
-        wait(for: [expectation], timeout: 10.0)
+        XCTAssertFalse(userAgent.isEmpty, "User Agent is empty.")
     }
     
-    func testFetchUserAgentWithWebViewPublicExtension() throws {
+    func testDefault() throws {
+        guard let userAgent = WKUserAgent.default else {
+            return XCTFail("Nil User-Agent.")
+        }
+        XCTAssertFalse(userAgent.isEmpty, "User Agent is empty.")
+    }
+    
+    func testWithApplicationName() throws {
+        guard let userAgent = WKUserAgent.withApplicationName(applicationName) else {
+            return XCTFail("Nil User-Agent.")
+        }
+        XCTAssertTrue(userAgent.contains(applicationName), "User Agent doesn't contains provided application name.")
+        XCTAssertFalse(userAgent.isEmpty, "User Agent is empty.")
+    }
+    
+    func testWithApplicationNameOverridingDefault() throws {
+        guard
+            let userAgent = WKUserAgent.withApplicationName(
+                applicationName,
+                overrideDefaultApplicationName: true)
+        else {
+            return XCTFail("Nil User-Agent.")
+        }
+        XCTAssertTrue(userAgent.contains(applicationName), "User Agent doesn't contains provided application name.")
+        XCTAssertFalse(userAgent.isEmpty, "User Agent is empty.")
+    }
+    
+    // MARK: <3.0.0 versions
+    
+    func testDeprecatedFromWebView() throws {
         let expectation = XCTestExpectation(description: "Fetch User Agent")
         
         DispatchQueue.main.async {
@@ -52,7 +70,7 @@ final class Tests: XCTestCase {
         wait(for: [expectation], timeout: 10.0)
     }
     
-    func testFetchUserAgentWithDefaultWebView() throws {
+    func testDeprecatedDefault() throws {
         let expectation = XCTestExpectation(description: "Fetch User Agent")
         
         WKUserAgent.fetch { result in
@@ -69,10 +87,9 @@ final class Tests: XCTestCase {
         wait(for: [expectation], timeout: 10.0)
     }
     
-    func testFetchUserAgentWithApplicationName() throws {
+    func testDeprecatedWithApplicationName() throws {
         let expectation = XCTestExpectation(description: "Fetch User Agent")
         
-        let applicationName = "test_fetch_user_agent_with_application_name"
         WKUserAgent.fetch(
             withApplicationName: applicationName,
             rewriteDefaultApplicationName: true
@@ -80,7 +97,7 @@ final class Tests: XCTestCase {
             switch result {
             case .success(let userAgent):
                 XCTAssertFalse(userAgent.isEmpty, "User Agent is empty.")
-                XCTAssertTrue(userAgent.contains(applicationName), "User Agent doesn't contains provided application name.")
+                XCTAssertTrue(userAgent.contains(self.applicationName), "User Agent doesn't contains provided application name.")
             case .failure(let error):
                 XCTFail("Error: \(error.localizedDescription)")
             }
@@ -91,10 +108,9 @@ final class Tests: XCTestCase {
         wait(for: [expectation], timeout: 10.0)
     }
     
-    func testFetchUserAgentWithAdditionalApplicationName() throws {
+    func testDeprecatedWithApplicationNameOverridingDefault() throws {
         let expectation = XCTestExpectation(description: "Fetch User Agent")
         
-        let applicationName = "test_fetch_user_agent_with_additional_application_name"
         WKUserAgent.fetch(
             withApplicationName: applicationName,
             rewriteDefaultApplicationName: false
@@ -102,7 +118,7 @@ final class Tests: XCTestCase {
             switch result {
             case .success(let userAgent):
                 XCTAssertFalse(userAgent.isEmpty, "User Agent is empty.")
-                XCTAssertTrue(userAgent.contains(applicationName), "User Agent doesn't contains provided application name.")
+                XCTAssertTrue(userAgent.contains(self.applicationName), "User Agent doesn't contains provided application name.")
             case .failure(let error):
                 XCTFail("Error: \(error.localizedDescription)")
             }

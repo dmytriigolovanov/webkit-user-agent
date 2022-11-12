@@ -7,16 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		52F68B9229200016003BE097 /* WKUserAgentIPadFix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F68B8A29200016003BE097 /* WKUserAgentIPadFix.swift */; };
 		52F68B9329200016003BE097 /* WKUserAgent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F68B8B29200016003BE097 /* WKUserAgent.swift */; };
 		52F68B9429200016003BE097 /* WKWebViewConfiguration+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F68B8D29200016003BE097 /* WKWebViewConfiguration+Extensions.swift */; };
 		52F68B9529200016003BE097 /* WKWebView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F68B8E29200016003BE097 /* WKWebView+Extensions.swift */; };
-		52F68B9629200016003BE097 /* WKUserAgentFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F68B8F29200016003BE097 /* WKUserAgentFetcher.swift */; };
-		52F68B9729200016003BE097 /* WKUserAgentError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F68B9129200016003BE097 /* WKUserAgentError.swift */; };
 		52F68B9B292002DF003BE097 /* WebKitUserAgent.h in Headers */ = {isa = PBXBuildFile; fileRef = 52F68B9A292002DF003BE097 /* WebKitUserAgent.h */; };
-		52F68B9D29200446003BE097 /* WKUserAgentErrorCodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F68B9C29200446003BE097 /* WKUserAgentErrorCodes.swift */; };
-		52F68B9F2920049A003BE097 /* WKUserAgentJavaScriptDisabledError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F68B9E2920049A003BE097 /* WKUserAgentJavaScriptDisabledError.swift */; };
-		52F68BA12920068A003BE097 /* WKUserAgentInvalidFetchResultError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F68BA02920068A003BE097 /* WKUserAgentInvalidFetchResultError.swift */; };
 		52F68BB0292022D6003BE097 /* WebKitUserAgent.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52F68B7D291FFFD2003BE097 /* WebKitUserAgent.framework */; };
 		52F68BB82920232F003BE097 /* WebKitUserAgentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F68BB72920232F003BE097 /* WebKitUserAgentTests.swift */; };
 /* End PBXBuildFile section */
@@ -33,18 +27,17 @@
 
 /* Begin PBXFileReference section */
 		52F68B7D291FFFD2003BE097 /* WebKitUserAgent.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = WebKitUserAgent.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		52F68B8A29200016003BE097 /* WKUserAgentIPadFix.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WKUserAgentIPadFix.swift; sourceTree = "<group>"; };
 		52F68B8B29200016003BE097 /* WKUserAgent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WKUserAgent.swift; sourceTree = "<group>"; };
 		52F68B8D29200016003BE097 /* WKWebViewConfiguration+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "WKWebViewConfiguration+Extensions.swift"; sourceTree = "<group>"; };
 		52F68B8E29200016003BE097 /* WKWebView+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "WKWebView+Extensions.swift"; sourceTree = "<group>"; };
-		52F68B8F29200016003BE097 /* WKUserAgentFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WKUserAgentFetcher.swift; sourceTree = "<group>"; };
-		52F68B9129200016003BE097 /* WKUserAgentError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WKUserAgentError.swift; sourceTree = "<group>"; };
 		52F68B9A292002DF003BE097 /* WebKitUserAgent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebKitUserAgent.h; sourceTree = "<group>"; };
-		52F68B9C29200446003BE097 /* WKUserAgentErrorCodes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WKUserAgentErrorCodes.swift; sourceTree = "<group>"; };
-		52F68B9E2920049A003BE097 /* WKUserAgentJavaScriptDisabledError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WKUserAgentJavaScriptDisabledError.swift; sourceTree = "<group>"; };
-		52F68BA02920068A003BE097 /* WKUserAgentInvalidFetchResultError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WKUserAgentInvalidFetchResultError.swift; sourceTree = "<group>"; };
 		52F68BAC292022D6003BE097 /* WebKitUserAgentTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WebKitUserAgentTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		52F68BB72920232F003BE097 /* WebKitUserAgentTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebKitUserAgentTests.swift; sourceTree = "<group>"; };
+		52F68BBA292059AD003BE097 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		52F68BBB292059AD003BE097 /* WebKitUserAgent.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = WebKitUserAgent.podspec; sourceTree = "<group>"; };
+		52F68BBC292059AD003BE097 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
+		52F68BBD292059AD003BE097 /* CHANGELOG.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = "<group>"; };
+		52F68BBE292059AD003BE097 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +62,7 @@
 		52F68B73291FFFD2003BE097 = {
 			isa = PBXGroup;
 			children = (
+				52F68BB929205999003BE097 /* Metadata */,
 				52F68B7F291FFFD2003BE097 /* WebKitUserAgent */,
 				52F68B7E291FFFD2003BE097 /* Products */,
 			);
@@ -95,12 +89,9 @@
 		52F68B8929200016003BE097 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				52F68B9029200016003BE097 /* Errors */,
 				52F68B8C29200016003BE097 /* Extensions */,
 				52F68B99292002DF003BE097 /* Headers */,
 				52F68B8B29200016003BE097 /* WKUserAgent.swift */,
-				52F68B8F29200016003BE097 /* WKUserAgentFetcher.swift */,
-				52F68B8A29200016003BE097 /* WKUserAgentIPadFix.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -112,17 +103,6 @@
 				52F68B8D29200016003BE097 /* WKWebViewConfiguration+Extensions.swift */,
 			);
 			path = Extensions;
-			sourceTree = "<group>";
-		};
-		52F68B9029200016003BE097 /* Errors */ = {
-			isa = PBXGroup;
-			children = (
-				52F68B9129200016003BE097 /* WKUserAgentError.swift */,
-				52F68B9C29200446003BE097 /* WKUserAgentErrorCodes.swift */,
-				52F68BA02920068A003BE097 /* WKUserAgentInvalidFetchResultError.swift */,
-				52F68B9E2920049A003BE097 /* WKUserAgentJavaScriptDisabledError.swift */,
-			);
-			path = Errors;
 			sourceTree = "<group>";
 		};
 		52F68B99292002DF003BE097 /* Headers */ = {
@@ -139,6 +119,18 @@
 				52F68BB72920232F003BE097 /* WebKitUserAgentTests.swift */,
 			);
 			path = Tests;
+			sourceTree = "<group>";
+		};
+		52F68BB929205999003BE097 /* Metadata */ = {
+			isa = PBXGroup;
+			children = (
+				52F68BBD292059AD003BE097 /* CHANGELOG.md */,
+				52F68BBE292059AD003BE097 /* LICENSE */,
+				52F68BBC292059AD003BE097 /* Package.swift */,
+				52F68BBA292059AD003BE097 /* README.md */,
+				52F68BBB292059AD003BE097 /* WebKitUserAgent.podspec */,
+			);
+			name = Metadata;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -274,14 +266,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				52F68B9329200016003BE097 /* WKUserAgent.swift in Sources */,
-				52F68B9229200016003BE097 /* WKUserAgentIPadFix.swift in Sources */,
 				52F68B9429200016003BE097 /* WKWebViewConfiguration+Extensions.swift in Sources */,
-				52F68B9629200016003BE097 /* WKUserAgentFetcher.swift in Sources */,
-				52F68B9F2920049A003BE097 /* WKUserAgentJavaScriptDisabledError.swift in Sources */,
 				52F68B9529200016003BE097 /* WKWebView+Extensions.swift in Sources */,
-				52F68B9729200016003BE097 /* WKUserAgentError.swift in Sources */,
-				52F68B9D29200446003BE097 /* WKUserAgentErrorCodes.swift in Sources */,
-				52F68BA12920068A003BE097 /* WKUserAgentInvalidFetchResultError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -443,7 +429,7 @@
 					"@loader_path/Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 3.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "dmytriigolovanov.webkit-user-agent";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = auto;
@@ -479,7 +465,7 @@
 					"@loader_path/Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 3.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "dmytriigolovanov.webkit-user-agent";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = auto;
@@ -500,7 +486,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 3.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "dmytriigolovanov.webkit-user-agent.tests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
@@ -522,7 +508,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 3.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "dmytriigolovanov.webkit-user-agent.tests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;

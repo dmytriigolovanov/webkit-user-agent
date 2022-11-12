@@ -55,25 +55,7 @@ Library provides 3 variants of usage.
     
     ... 
     
-    WKUserAgent.fetch(fromWebView: webView) { result in 
-        switch result {
-        case .success(let userAgent):
-            // Get the User Agent
-        case .failure(let error):
-            // Handle error
-        }
-    }
-    
-    // or
-    
-    webView.fetchUserAgent { result in
-        switch result {
-        case .success(let userAgent):
-            // Get the User Agent
-        case .failure(let error):
-            // Handle error
-        }
-    }
+    let userAgent = webView.userAgent
 ```
 
 2. With default `WKWebView`.
@@ -81,35 +63,21 @@ Library provides 3 variants of usage.
 **example:**
 
 ```swift
-    WKUserAgent.fetch { result in 
-        switch result {
-        case .success(let userAgent):
-            // Get the User Agent
-        case .failure(let error):
-            // Handle error
-        }
-    }
+    let userAgent = WKUserAgent.default
 ```
 
 3. With `applicationName`.
 Application name is additional part for User Agent, which will be added at the end of original WebView's User Agent.
-Provided `rewriteDefaultApplicationName` parameter for using/rewriting default `applicationName` from `WKWebViewConfiguration`.
+Provided `overrideDefaultApplicationName` parameter for using/rewriting default `applicationName` from `WKWebViewConfiguration`.
+(By default this parameter is `false`)
 
 **example:**
 ```swift
     let applicationName = "EXAMPLE/1.0.0"
     
-    WKUserAgent.fetch(
-        withApplicationName: applicationName, 
-        rewriteDefaultApplicationName: true
-    ) { result in 
-        switch result {
-        case .success(let userAgent):
-            // Get the User Agent
-        case .failure(let error):
-            // Handle error
-        }
-    }
+    let userAgent = WKUserAgent.withApplicationName(
+        applicationName, 
+        overrideDefaultApplicationName: true) 
 ```
 
 
