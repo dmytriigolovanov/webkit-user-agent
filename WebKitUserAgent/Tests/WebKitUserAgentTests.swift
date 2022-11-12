@@ -10,7 +10,7 @@ import XCTest
 import WebKit
 @testable import WebKitUserAgent
 
-final class WebKitUserAgentTests: XCTestCase {
+final class Tests: XCTestCase {
     
     func testFetchUserAgentWithWebView() throws {
         let expectation = XCTestExpectation(description: "Fetch User Agent")
