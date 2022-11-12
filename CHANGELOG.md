@@ -1,3 +1,8 @@
+# v3.0.0 (2022-11-13)
+
+- [changed] Updated fetching logic
+- [changed] Updated fetching interface
+
 # v2.0.2 (2022-06-26)
 
 - [fixed] Fixed podspec swift version

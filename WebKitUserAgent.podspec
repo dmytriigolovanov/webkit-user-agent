@@ -1,10 +1,10 @@
 Pod::Spec.new do |s|
   s.name             = 'WebKitUserAgent'
-  s.version          = '2.0.2'
-  s.summary          = 'Conveniently getting the User Agent through WKWebView'
+  s.version          = '3.0.0'
+  s.summary          = 'Conveniently getting the User-Agent through WKWebView'
 
   s.description      = <<-DESC
-The library provides the ability to conveniently getting the User Agent through WKWebView.
+The library provides the ability to conveniently getting the User-Agent through WKWebView.
                        DESC
 
   s.homepage         = 'https://github.com/dmytriigolovanov/webkit-user-agent'
