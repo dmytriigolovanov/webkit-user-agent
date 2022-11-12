@@ -23,7 +23,7 @@ final class WKUserAgentFetcher: NSObject {
     func fetch(completion: @escaping (Result<String, Error>) -> Void) {
         DispatchQueue.main.async {
             guard self.webView.configuration.isJavaScriptEnabled else {
-                let error = WKUserAgentError.javaScriptDisabled
+                let error = WKUserAgentJavaScriptDisabledError()
                 completion(.failure(error))
                 return
             }
@@ -32,7 +32,7 @@ final class WKUserAgentFetcher: NSObject {
                 switch result {
                 case .success(let anyResult):
                     guard let userAgent = anyResult as? String else {
-                        let error = WKUserAgentError.javaScriptCompletedWithInvalidResult(anyResult)
+                        let error = WKUserAgentInvalidFetchResultError(anyResult)
                         completion(.failure(error))
                         return
                     }

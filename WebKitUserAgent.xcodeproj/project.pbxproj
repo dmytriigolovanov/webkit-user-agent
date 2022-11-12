@@ -14,6 +14,9 @@
 		52F68B9629200016003BE097 /* WKUserAgentFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F68B8F29200016003BE097 /* WKUserAgentFetcher.swift */; };
 		52F68B9729200016003BE097 /* WKUserAgentError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F68B9129200016003BE097 /* WKUserAgentError.swift */; };
 		52F68B9B292002DF003BE097 /* WebKitUserAgent.h in Headers */ = {isa = PBXBuildFile; fileRef = 52F68B9A292002DF003BE097 /* WebKitUserAgent.h */; };
+		52F68B9D29200446003BE097 /* WKUserAgentErrorCodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F68B9C29200446003BE097 /* WKUserAgentErrorCodes.swift */; };
+		52F68B9F2920049A003BE097 /* WKUserAgentJavaScriptDisabledError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F68B9E2920049A003BE097 /* WKUserAgentJavaScriptDisabledError.swift */; };
+		52F68BA12920068A003BE097 /* WKUserAgentInvalidFetchResultError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F68BA02920068A003BE097 /* WKUserAgentInvalidFetchResultError.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +28,9 @@
 		52F68B8F29200016003BE097 /* WKUserAgentFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WKUserAgentFetcher.swift; sourceTree = "<group>"; };
 		52F68B9129200016003BE097 /* WKUserAgentError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WKUserAgentError.swift; sourceTree = "<group>"; };
 		52F68B9A292002DF003BE097 /* WebKitUserAgent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebKitUserAgent.h; sourceTree = "<group>"; };
+		52F68B9C29200446003BE097 /* WKUserAgentErrorCodes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WKUserAgentErrorCodes.swift; sourceTree = "<group>"; };
+		52F68B9E2920049A003BE097 /* WKUserAgentJavaScriptDisabledError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WKUserAgentJavaScriptDisabledError.swift; sourceTree = "<group>"; };
+		52F68BA02920068A003BE097 /* WKUserAgentInvalidFetchResultError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WKUserAgentInvalidFetchResultError.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +94,9 @@
 			isa = PBXGroup;
 			children = (
 				52F68B9129200016003BE097 /* WKUserAgentError.swift */,
+				52F68B9C29200446003BE097 /* WKUserAgentErrorCodes.swift */,
+				52F68BA02920068A003BE097 /* WKUserAgentInvalidFetchResultError.swift */,
+				52F68B9E2920049A003BE097 /* WKUserAgentJavaScriptDisabledError.swift */,
 			);
 			path = Errors;
 			sourceTree = "<group>";
@@ -206,8 +215,11 @@
 				52F68B9229200016003BE097 /* WKUserAgentIPadFix.swift in Sources */,
 				52F68B9429200016003BE097 /* WKWebViewConfiguration+Extensions.swift in Sources */,
 				52F68B9629200016003BE097 /* WKUserAgentFetcher.swift in Sources */,
+				52F68B9F2920049A003BE097 /* WKUserAgentJavaScriptDisabledError.swift in Sources */,
 				52F68B9529200016003BE097 /* WKWebView+Extensions.swift in Sources */,
 				52F68B9729200016003BE097 /* WKUserAgentError.swift in Sources */,
+				52F68B9D29200446003BE097 /* WKUserAgentErrorCodes.swift in Sources */,
+				52F68BA12920068A003BE097 /* WKUserAgentInvalidFetchResultError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
