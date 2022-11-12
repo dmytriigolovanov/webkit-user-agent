@@ -3,8 +3,8 @@
 ## Requirements
 
 * **Swift 5.3**
-* **iOS 9.0+**
-* **macOS 10.11+**
+* **iOS 11.0+**
+* **macOS 10.13+**
 
 ## Installation
 

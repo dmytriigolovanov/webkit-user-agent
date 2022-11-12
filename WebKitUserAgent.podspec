@@ -21,8 +21,8 @@ The library provides the ability to conveniently getting the User Agent through 
     "CHANGELOG.md"
   ]
 
-  s.ios.deployment_target = "9.0"
-  s.osx.deployment_target = '10.11'
+  s.ios.deployment_target = "11.0"
+  s.osx.deployment_target = '10.13'
   
   s.ios.frameworks = [
       "WebKit",
