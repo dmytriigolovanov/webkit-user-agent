@@ -35,4 +35,3 @@ extension WKWebViewConfiguration {
         self.applicationNameForUserAgent = targetApplicationName
     }
 }
-}

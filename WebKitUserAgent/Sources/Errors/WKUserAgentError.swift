@@ -31,7 +31,7 @@ extension WKUserAgentError: CustomNSError {
         }
     }
     
-    var errorUserInfo: [String : Any] {
+    var errorUserInfo: [String: Any] {
         var userInfo: [String: Any] = [:]
         
         switch self {
@@ -44,7 +44,6 @@ extension WKUserAgentError: CustomNSError {
         return userInfo
     }
 }
-
 
 // MARK: - LocalizedError
 
