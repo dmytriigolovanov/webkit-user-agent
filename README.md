@@ -55,7 +55,10 @@ Library provides 3 variants of usage.
     
     ... 
     
-    let userAgent = webView.userAgent
+    DispatchQueue.main.async {
+        let userAgent = webView.userAgent
+    }
+}
 ```
 
 2. With default `WKWebView`.
@@ -63,7 +66,9 @@ Library provides 3 variants of usage.
 **example:**
 
 ```swift
-    let userAgent = WKUserAgent.default
+    WKUserAgent.fetchDefault { userAgent in
+    
+    }
 ```
 
 3. With `applicationName`.
@@ -75,9 +80,12 @@ Provided `overrideDefaultApplicationName` parameter for using/rewriting default 
 ```swift
     let applicationName = "EXAMPLE/1.0.0"
     
-    let userAgent = WKUserAgent.withApplicationName(
-        applicationName, 
-        overrideDefaultApplicationName: true) 
+    WKUserAgent.fetch(
+        withApplicationName: applicationName, 
+        overrideDefaultApplicationName: true
+    ) { userAgent in
+    
+    }
 ```
 
 

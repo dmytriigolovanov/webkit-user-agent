@@ -14,12 +14,4 @@ extension WKWebView {
     public var userAgent: String! {
         self.value(forKey: "userAgent") as? String
     }
-    
-    // MARK: <3.0.0 versions support
-    
-    /// Fetching `User Agent` through `WKWebView`.
-    @available(*, deprecated, renamed: "userAgent")
-    public func fetchUserAgent(completion: @escaping (Result<String, Error>) -> Void) {
-        WKUserAgent.fetch(fromWebView: self, completion: completion)
-    }
 }
