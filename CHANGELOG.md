@@ -1,3 +1,7 @@
+# v4.0.0 (2022-11-13)
+
+- [changed] Reogranized fetching logic & interface
+
 # v3.0.0 (2022-11-13)
 
 - [changed] Updated fetching logic
