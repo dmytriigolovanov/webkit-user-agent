@@ -30,7 +30,7 @@ The library provides the ability to conveniently getting the User-Agent through 
   ]
   s.osx.framework = 'WebKit'
 
-  s.swift_version = "5.3"
+  s.swift_version = "5.5"
 
   s.source_files  = "WebKitUserAgent/Sources/**/*"
 end
