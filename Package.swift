@@ -14,12 +14,17 @@ let package = Package(
     dependencies: [],
     targets: [
         .target(
+            name: "WebKitSafeKVC",
+            path: "WebKitSafeKVC",
+            publicHeadersPath: "Headers"),
+        .target(
             name: "WebKitUserAgent",
-            path: "WebKitUserAgent/Sources"),
+            dependencies: ["WebKitSafeKVC"],
+            path: "WebKitUserAgent"),
         .testTarget(
             name: "WebKitUserAgentTests",
-            dependencies: ["WebKitUserAgent"],
-            path: "WebKitUserAgent/Tests")
+            dependencies: ["WebKitUserAgent", "WebKitSafeKVC"],
+            path: "WebKitUserAgentTests")
     ],
     swiftLanguageVersions: [.v5]
 )
