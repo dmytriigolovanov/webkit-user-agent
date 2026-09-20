@@ -23,12 +23,17 @@ The library provides the ability to conveniently getting the User-Agent through 
 
   s.ios.deployment_target = "15.0"
   s.osx.deployment_target = '12.0'
+  s.visionos.deployment_target = '1.0'
 
   s.ios.frameworks = [
       "WebKit",
       "UIKit"
   ]
   s.osx.framework = 'WebKit'
+  s.visionos.frameworks = [
+      "WebKit",
+      "UIKit"
+  ]
 
   s.swift_version = "5.5"
 

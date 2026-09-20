@@ -5,7 +5,7 @@ import PackageDescription
 
 let package = Package(
     name: "WebKitUserAgent",
-    platforms: [.iOS(.v15), .macOS(.v12)],
+    platforms: [.iOS(.v15), .macOS(.v12), .visionOS(.v1)],
     products: [
         .library(
             name: "WebKitUserAgent",

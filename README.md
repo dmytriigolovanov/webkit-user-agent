@@ -5,6 +5,7 @@
 * **Swift 5.5**
 * **iOS 15.0+**
 * **macOS 12.0+**
+* **visionOS 1.0+**
 
 ## Installation
 
