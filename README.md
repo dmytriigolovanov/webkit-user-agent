@@ -40,53 +40,34 @@ See the subsections below for details about the different installation methods.
 
 ## Using
 
-Import library to needed swift file.
-
 ```swift
-    import WebKitUserAgent
+import WebKitUserAgent
 ```
 
-Library provides 3 variants of usage.
-1. With prepared `WKWebView`.
-
-**example:**
+From an existing `WKWebView`:
 
 ```swift
-    var webView: WKWebView
-    
-    ... 
-    
-    DispatchQueue.main.async {
-        let userAgent = webView.userAgent
-    }
-}
+let userAgent = await webView.userAgent
 ```
 
-2. With default `WKWebView`.
-
-**example:**
+From a default `WKWebView`:
 
 ```swift
-    WKUserAgent.fetchDefault { userAgent in
-    
-    }
+let userAgent = await WKUserAgent.default
 ```
 
-3. With `applicationName`.
-Application name is additional part for User Agent, which will be added at the end of original WebView's User Agent.
-Provided `overrideDefaultApplicationName` parameter for using/rewriting default `applicationName` from `WKWebViewConfiguration`.
-(By default this parameter is `false`)
+With an application name, appended to (or replacing) the default:
 
-**example:**
 ```swift
-    let applicationName = "EXAMPLE/1.0.0"
-    
-    WKUserAgent.fetch(
-        withApplicationName: applicationName, 
-        overrideDefaultApplicationName: true
-    ) { userAgent in
-    
-    }
+let userAgent = await WKUserAgent.withApplicationName("EXAMPLE/1.0.0", appendingToDefault: true)
+```
+
+Completion-handler equivalents are available for Objective-C or non-async callers:
+
+```swift
+webView.fetchUserAgent { userAgent in }
+WKUserAgent.fetchDefault { userAgent in }
+WKUserAgent.withApplicationName("EXAMPLE/1.0.0", appendingToDefault: true) { userAgent in }
 ```
 
 
