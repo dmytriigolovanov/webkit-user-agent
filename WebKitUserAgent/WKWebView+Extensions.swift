@@ -25,6 +25,13 @@ extension WKWebView {
         }
     }
 
+    @objc
+    public func fetchUserAgent(completionHandler: @escaping (String?) -> Void) {
+        Task { @MainActor in
+            completionHandler(await self.userAgent)
+        }
+    }
+
     private var keyValueUserAgent: String? {
         #if canImport(WebKitSafeKVC)
         return WKWebViewSafeValueForKey(self, "userAgent") as? String

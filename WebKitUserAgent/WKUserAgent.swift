@@ -35,10 +35,8 @@ public final class WKUserAgent: NSObject {
         return await webView.userAgent
     }
     
-    // MARK: Compatibility
-    
-    /// Fetching `User Agent` through default `WKWebView`.
-    @available(*, deprecated, message: "Use the async `default` property instead.")
+    // MARK: Objective-C
+
     @objc
     public static func fetchDefault(completionHandler: @escaping (String?) -> Void) {
         Task { @MainActor in
@@ -46,9 +44,21 @@ public final class WKUserAgent: NSObject {
             completionHandler(userAgent)
         }
     }
-    
-    /// Fetching `User Agent` through default `WKWebView` with application name.
-    /// Overriding default `applicationName` value (default for `WKWebViewConfiguration`) ability provided.
+
+    @objc
+    public static func withApplicationName(
+        _ applicationName: String,
+        appendingToDefault: Bool,
+        completionHandler: @escaping (String?) -> Void
+    ) {
+        Task { @MainActor in
+            let userAgent = await withApplicationName(applicationName, appendingToDefault: appendingToDefault)
+            completionHandler(userAgent)
+        }
+    }
+
+    // MARK: Deprecated
+
     @available(*, deprecated, message: "Use the async `withApplicationName(_:appendingToDefault:)` function instead.")
     @objc
     public static func fetch(withApplicationName applicationName: String,

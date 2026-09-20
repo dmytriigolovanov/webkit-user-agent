@@ -47,9 +47,9 @@ final class Tests: XCTestCase {
         XCTAssertFalse(userAgent.isEmpty, "User Agent is empty.")
     }
 
-    // MARK: Deprecated completion handler bridges
+    // MARK: Objective-C bridges
 
-    func testDeprecatedFetchDefault() throws {
+    func testFetchDefaultCompletionHandler() throws {
         let expectation = XCTestExpectation(description: "Fetch User Agent")
 
         WKUserAgent.fetchDefault { userAgent in
@@ -62,6 +62,39 @@ final class Tests: XCTestCase {
 
         wait(for: [expectation], timeout: 10.0)
     }
+
+    func testWithApplicationNameCompletionHandler() throws {
+        let expectation = XCTestExpectation(description: "Fetch User Agent")
+
+        WKUserAgent.withApplicationName(applicationName, appendingToDefault: true) { userAgent in
+            guard let userAgent = userAgent else {
+                return XCTFail("Nil User-Agent.")
+            }
+            XCTAssertTrue(userAgent.contains(self.applicationName), "User Agent doesn't contains provided application name.")
+            XCTAssertFalse(userAgent.isEmpty, "User Agent is empty.")
+            expectation.fulfill()
+        }
+
+        wait(for: [expectation], timeout: 10.0)
+    }
+
+    @MainActor
+    func testWebViewFetchUserAgentCompletionHandler() throws {
+        let expectation = XCTestExpectation(description: "Fetch User Agent")
+        let webView = WKWebView(frame: .zero)
+
+        webView.fetchUserAgent { userAgent in
+            guard let userAgent = userAgent else {
+                return XCTFail("Nil User-Agent.")
+            }
+            XCTAssertFalse(userAgent.isEmpty, "User Agent is empty.")
+            expectation.fulfill()
+        }
+
+        wait(for: [expectation], timeout: 10.0)
+    }
+
+    // MARK: Deprecated completion handler bridges
 
     func testDeprecatedFetchWithApplicationName() throws {
         let expectation = XCTestExpectation(description: "Fetch User Agent")
