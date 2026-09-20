@@ -2,9 +2,9 @@
 
 ## Requirements
 
-* **iOS 11.0+**
 * **macOS 10.13+**
 * **Swift 5.5**
+* **iOS 15.0+**
 
 ## Installation
 
