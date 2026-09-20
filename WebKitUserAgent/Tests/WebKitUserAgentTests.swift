@@ -1,9 +1,7 @@
 //
-//  WebKitUserAgentTests.swift
-//  WebKitUserAgent
+//  WebKit User-Agent
 //
-//  Created by Dmytrii Golovanov on 03.12.2021.
-//  Copyright © 2022 Dmytrii Golovanov. All rights reserved.
+//  https://github.com/dmytriigolovanov/webkit-user-agent/blob/main/LICENSE
 //
 
 import XCTest
