@@ -35,7 +35,7 @@ The library provides the ability to conveniently getting the User-Agent through 
       "UIKit"
   ]
 
-  s.swift_version = "5.5"
+  s.swift_version = "5.9"
 
   s.source_files  = "WebKitUserAgent/**/*", "WebKitSafeKVC/**/*"
 end
